@@ -1,0 +1,16 @@
+{
+    "name": "Mo35 - Consulta IMEI Inteligente",
+    "short_name": "Mo35",
+    "description": "Verifica la información de cualquier dispositivo móvil de forma rápida y sencilla usando mensajería",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#7B2BF9",
+    "theme_color": "#7B2BF9",
+    "icons": [
+      {
+        "src": "/logo.svg",
+        "sizes": "192x192",
+        "type": "image/svg+xml"
+      }
+    ]
+  }
