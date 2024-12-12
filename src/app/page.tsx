@@ -1,10 +1,47 @@
 'use client'
 
-import React from 'react';
-import { Smartphone, Info, Lock, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Smartphone, Info, Lock, ArrowRight, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
+import { changelog } from '../config/changelog';
+
+// Componente separado para el Changelog
+const ChangelogModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="absolute left-0 bottom-full mb-2 w-80 md:w-96 bg-white text-purple-900 rounded-xl shadow-xl border border-purple-100 overflow-hidden"
+      onClick={(e) => e.stopPropagation()} // Prevenir que el click se propague
+    >
+      <div className="p-4 bg-purple-50 border-b border-purple-100">
+        <h3 className="text-lg font-bold text-purple-600">Historial de Cambios</h3>
+      </div>
+      <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
+        {changelog.map((release, index) => (
+          <div key={index} className="p-4 border-b border-purple-100 hover:bg-purple-50 transition-colors">
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="font-bold text-purple-600">v{release.version}</h4>
+              <span className="text-sm text-purple-400">{release.date}</span>
+            </div>
+            <ul className="space-y-2">
+              {release.changes.map((change, changeIndex) => (
+                <li key={changeIndex} className="flex items-start gap-2 text-sm">
+                  <span className="text-purple-400">•</span>
+                  <span>{change}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function Mo35Landing() {
+  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
+
   // Función para abrir WhatsApp
   const openWhatsApp = () => {
     const message = encodeURIComponent('¡Hola!');
@@ -145,6 +182,29 @@ export default function Mo35Landing() {
             Escribe "¡hola!" para comenzar
             <ArrowRight className="inline animate-float" />
           </button>
+        </div>
+
+        {/* Changelog Button - Fixed Position */}
+        <div 
+          className="fixed bottom-4 left-4 z-50"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsChangelogOpen(!isChangelogOpen);
+          }}
+        >
+          <button
+            className="flex items-center gap-2 px-4 py-2 bg-white text-[#7B2BF9] rounded-xl font-medium hover:-translate-y-1 transition-all shadow-lg opacity-0 animate-fadeIn"
+            style={{ animationDelay: '2400ms', animationFillMode: 'forwards' }}
+          >
+            <Clock size={20} />
+            Changelog
+            {isChangelogOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+          </button>
+
+          <ChangelogModal 
+            isOpen={isChangelogOpen} 
+            onClose={() => setIsChangelogOpen(false)} 
+          />
         </div>
 
         {/* Indicador flotante */}
