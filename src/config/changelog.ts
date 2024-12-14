@@ -8,6 +8,16 @@ export interface ChangelogEntry {
   
   export const changelog: ChangelogEntry[] = [
     {
+      version: "0.0.4",
+      date: "13 Dic 2024",
+      changes: [
+        "Nuevo sistema detectar imei desde nota voz",
+        "Las consultas ofrecen mas informacion como icloud on y otras mas ",
+        "Se agrego una funcion que busca el precio local del equipo",
+        "Las consultas el tiempo estimado >=10 Segundos",
+    ]
+  },
+    {
         version: "0.0.3",
         date: "1 Dic 2024",
         changes: [
