@@ -11,7 +11,7 @@ export interface ChangelogEntry {
       version: "0.0.5",
       date: "14 Dic 2024",
       changes: [
-        "Fix bug que que tomaba el imei incorrecto de las imagenes",
+        "Fix bug que tomaba el imei incorrecto de las imagenes",
         "Se agrego un reitento de candidatos encontrados en la imagenes",
     ]
   },
