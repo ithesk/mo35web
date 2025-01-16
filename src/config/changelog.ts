@@ -9,10 +9,11 @@ export interface ChangelogEntry {
   export const changelog: ChangelogEntry[] = [
     {
       version: "0.0.6",
-      date: "15 Dic 2025",
+      date: "15 enero 2025",
       changes: [
         "Fix bug que tomaba el imei incorrecto de las imagenes",
         "fix bug que detectaba los modelos reciente 16Series",
+        "Se acctualizo la forma de buscar por reitentos",
     ]
   },
     {
