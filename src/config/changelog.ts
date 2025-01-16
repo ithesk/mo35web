@@ -13,7 +13,7 @@ export interface ChangelogEntry {
       changes: [
         "Fix bug que tomaba el imei incorrecto de las imagenes",
         "fix bug que detectaba los modelos reciente 16Series",
-        "Se acctualizo la forma de buscar por reitentos",
+        "Se acctualizo la forma de buscar por reintentos",
     ]
   },
     {
