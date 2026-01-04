@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Smartphone, Info, Lock, ArrowRight, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Smartphone, Info, Lock, ArrowRight, Clock, ChevronDown, ChevronUp, Shield } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { changelog } from '../config/changelog';
 
 // Componente separado para el Changelog
@@ -211,6 +212,17 @@ export default function Mo35Landing() {
         <div className="fixed bottom-4 right-4 bg-white rounded-full p-4 animate-bounce shadow-lg">
           <Smartphone className="w-6 h-6 text-[#7B2BF9]" />
         </div>
+
+        {/* Privacy Policy Link */}
+        <Link
+          href="/privacy"
+          onClick={(e) => e.stopPropagation()}
+          className="fixed bottom-4 right-20 flex items-center gap-2 px-4 py-2 bg-white/20 text-white rounded-xl text-sm hover:bg-white/30 transition-all opacity-0 animate-fadeIn"
+          style={{ animationDelay: '2400ms', animationFillMode: 'forwards' }}
+        >
+          <Shield size={16} />
+          Privacy Policy
+        </Link>
       </div>
     </div>
   );
