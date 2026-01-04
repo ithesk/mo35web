@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
             </div>
             <div>
               <h1 className="text-4xl font-bold">Privacy Policy</h1>
-              <p className="text-white/80">IMEI Check</p>
+              <p className="text-white/80">mo35</p>
             </div>
           </div>
 
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
           <section className="p-6 bg-white/20 backdrop-blur-sm rounded-2xl">
             <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
             <p className="text-white/90 leading-relaxed">
-              This Privacy Policy explains how IMEI Check (&quot;the App&quot;, &quot;we&quot;, &quot;our&quot;) collects, uses, and protects
+              This Privacy Policy explains how Mo35 (&quot;the App&quot;, &quot;we&quot;, &quot;our&quot;) collects, uses, and protects
               your information when you use our mobile application.
             </p>
             <p className="text-white/90 leading-relaxed mt-4">
