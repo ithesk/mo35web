@@ -16,8 +16,8 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Mo35 dev",
   description: "La forma mas facil de consultar tu equipo",
-  other: {
-    "apple-itunes-app": "app-id=6757360494",
+  itunes: {
+    appId: "6757360494",
   },
 };
 

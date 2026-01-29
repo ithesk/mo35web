@@ -1,229 +1,219 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Smartphone, Info, Lock, ArrowRight, Clock, ChevronDown, ChevronUp, Shield } from 'lucide-react';
+import { Smartphone, Info, Lock, ArrowRight, Download, AlertTriangle, Check, X, ChevronRight, Apple } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { changelog } from '../config/changelog';
-
-// Componente separado para el Changelog
-const ChangelogModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div 
-      className="absolute left-0 bottom-full mb-2 w-80 md:w-96 bg-white text-purple-900 rounded-xl shadow-xl border border-purple-100 overflow-hidden"
-      onClick={(e) => e.stopPropagation()} // Prevenir que el click se propague
-    >
-      <div className="p-4 bg-purple-50 border-b border-purple-100">
-        <h3 className="text-lg font-bold text-purple-600">Historial de Cambios</h3>
-      </div>
-      <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
-        {changelog.map((release, index) => (
-          <div key={index} className="p-4 border-b border-purple-100 hover:bg-purple-50 transition-colors">
-            <div className="flex justify-between items-center mb-2">
-              <h4 className="font-bold text-purple-600">v{release.version}</h4>
-              <span className="text-sm text-purple-400">{release.date}</span>
-            </div>
-            <ul className="space-y-2">
-              {release.changes.map((change, changeIndex) => (
-                <li key={changeIndex} className="flex items-start gap-2 text-sm">
-                  <span className="text-purple-400">•</span>
-                  <span>{change}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+import { ScreenshotSlideshow } from './components/ScreenshotSlideshow';
 
 export default function Mo35Landing() {
-  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
 
-  // Función para abrir WhatsApp
-  const openWhatsApp = () => {
-    const message = encodeURIComponent('¡Hola!');
-    window.open(`https://wa.me/18299316043?text=${message}`, '_blank');
+  // Función para redirigir a App Store
+  const openAppStore = () => {
+    // Placeholder URL - update if real URL is known or strictly use app-id metadata behavior if supported
+    window.open('https://apps.apple.com/app/id6757360494', '_blank');
   };
 
   return (
-    // Agregamos onClick al div principal y cursor-pointer
-    <div 
-      className="min-h-screen bg-[#7B2BF9] p-8 cursor-pointer"
-      onClick={openWhatsApp}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          {/* Logo con Imagen */}
-          <div className="relative w-32 h-32 mx-auto mb-8 animate-float">
-            <Image
-              src="/logomo35.svg"
-              alt="Mo35 Logo"
-              width={128}
-              height={128}
-              className="w-full h-full"
-              priority
+    <div className="min-h-screen relative selection:bg-[#7B2BF9] selection:text-white">
+      {/* Background Decor */}
+      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#7B2BF9]/20 blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#7B2BF9]/10 blur-[120px] animate-pulse" style={{ animationDuration: '6s' }} />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+
+        {/* Navigation / Header */}
+        <nav className="flex justify-between items-center mb-20 animate-fadeIn">
+          <div className="flex items-center gap-3">
+            <div className="relative w-10 h-10">
+              <Image
+                src="/logomo35.svg"
+                alt="Mo35 Logo"
+                width={40}
+                height={40}
+                className="w-full h-full"
+              />
+            </div>
+            <span className="font-bold text-xl tracking-tight">Mo35</span>
+          </div>
+          <button onClick={openAppStore} className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition-all transform hover:scale-105">
+            <Apple size={18} className="mb-0.5" />
+            <span>Descargar App</span>
+          </button>
+        </nav>
+
+        {/* Hero Section */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-32">
+
+          <div className="text-left animate-slideUp" style={{ animationDelay: '0.1s' }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              </span>
+              Nuevo lanzamiento iOS
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+              Consultas IMEI <br />
+              <span className="text-gradient">redefinidas.</span>
+            </h1>
+
+            <p className="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
+              La era del bot ha terminado. Descubre la potencia de nuestra nueva aplicación nativa. Más rápida, más segura y diseñada para profesionales.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={openAppStore}
+                className="flex items-center justify-center gap-3 px-8 py-4 bg-[#7B2BF9] hover:bg-[#6222c7] text-white rounded-2xl font-bold text-lg transition-all transform hover:translate-y-[-2px] shadow-lg shadow-purple-900/50"
+              >
+                <Apple size={24} />
+                <span>Descargar en App Store</span>
+              </button>
+              <a
+                href="#features"
+                className="flex items-center justify-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white rounded-2xl font-medium transition-all"
+              >
+                Ver novedades
+                <ChevronDownIcon />
+              </a>
+            </div>
+
+            {/* Migration Notice */}
+            <div className="mt-10 p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-start gap-3 max-w-md">
+              <AlertTriangle className="text-yellow-500 shrink-0 mt-0.5" size={20} />
+              <div>
+                <h4 className="font-bold text-yellow-500 text-sm mb-1">Aviso Importante</h4>
+                <p className="text-gray-400 text-sm leading-snug">
+                  El bot de WhatsApp dejará de funcionar próximamente. Migra a la app para asegurar acceso ininterrumpido a tus herramientas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative h-[600px] w-full flex items-center justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+            {/* Abstract Phone Representation or App Screenshot Placeholder */}
+            <div className="relative w-[300px] h-[600px] bg-black border-[8px] border-gray-800 rounded-[3rem] shadow-2xl overflow-hidden z-10">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-xl z-20"></div>
+
+              {/* Real App Screenshot Slideshow */}
+              <div className="w-full h-full bg-black relative">
+                <ScreenshotSlideshow />
+              </div>
+            </div>
+
+            {/* Background Blooms behind phone */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[500px] bg-purple-500/20 blur-[80px] -z-10"></div>
+          </div>
+        </div>
+
+        {/* Feature Comparison */}
+        <div id="features" className="py-20 animate-slideUp" style={{ animationDelay: '0.4s' }}>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">¿Por qué cambiar?</h2>
+            <p className="text-gray-400">La evolución natural de tu herramienta de trabajo.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <FeatureCard
+              icon={<Smartphone className="text-purple-400" size={32} />}
+              title="Experiencia Nativa"
+              description="Olvídate de comandos de texto. Una interfaz visual, táctil y diseñada para iPhone."
+            />
+            <FeatureCard
+              icon={<HistoryIcon className="text-purple-400" size={32} />}
+              title="Historial Local"
+              description="Guarda tus consultas directamente en tu dispositivo. Acceso offline y búsqueda instantánea."
+            />
+            <FeatureCard
+              icon={<Lock className="text-purple-400" size={32} />}
+              title="Mayor Privacidad"
+              description="Tus datos y consultas se procesan de forma más segura sin intermediarios de mensajería."
             />
           </div>
+        </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-slideUp"
-              style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
-            Consulta IMEI Inteligente
-          </h1>
-          
-          {/* Agregamos una indicación visual */}
-          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8 opacity-0 animate-slideUp"
-             style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}>
-            Verifica la información de cualquier dispositivo móvil de forma rápida y sencilla usando mensajería
-            <span className="block text-sm mt-2 text-white/70">
-              Toca en cualquier lugar para comenzar
-            </span>
-          </p>
-
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            {['PocketBase', 'Google Vision', 'TypeScript', 'API REST'].map((tech, index) => (
-              <span 
-                key={tech} 
-                className="px-4 py-2 bg-white/20 rounded-xl text-white opacity-0 animate-fadeIn hover:bg-white/30 transition-all duration-300"
-                style={{ 
-                  animationDelay: `${700 + (index * 100)}ms`,
-                  animationFillMode: 'forwards'
-                }}
-              >
-                {tech}
-              </span>
-            ))}
+        {/* Comparison Table (Simplified) */}
+        <div className="py-10 max-w-3xl mx-auto">
+          <div className="glass rounded-3xl p-8 md:p-12">
+            <h3 className="text-2xl font-bold mb-8 text-center text-white">Comparativa</h3>
+            <div className="space-y-4">
+              <ComparisonRow feature="Velocidad de Respuesta" bot="Lenta" app="Instantánea" />
+              <ComparisonRow feature="Interfaz Gráfica" bot="No (Texto)" app="Si (Nativa)" />
+              <ComparisonRow feature="Historial de Consultas" bot="Limitado" app="Ilimitado" />
+              <ComparisonRow feature="Notificaciones" bot="No" app="Si" />
+            </div>
           </div>
         </div>
 
-        {/* Features */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {[
-            {
-              icon: <Smartphone size={32} />,
-              title: "Fácil de Usar",
-              description: "Envía un mensaje con una imagen del IMEI o escríbelo directamente usando mensajería"
-            },
-            {
-              icon: <Info size={32} />,
-              title: "Información Completa",
-              description: "Modelo exacto, color, capacidad, fecha de compra y estado del dispositivo al instante"
-            },
-            {
-              icon: <Lock size={32} />,
-              title: "Compra Segura",
-              description: "Verifica el estado antes de realizar una compra o venta de dispositivos"
-            }
-          ].map((feature, index) => (
-            <div 
-              key={index} 
-              className="bg-white/20 rounded-2xl p-6 opacity-0 animate-slideUp transform hover:translate-y-[-10px] hover:bg-white/30 transition-all duration-300"
-              style={{ 
-                animationDelay: `${1000 + (index * 200)}ms`,
-                animationFillMode: 'forwards'
-              }}
-            >
-              <div className="text-white mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-white/90">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* How it works */}
-        <div className="bg-white/20 rounded-2xl p-8 mb-16 opacity-0 animate-slideUp"
-             style={{ animationDelay: '1600ms', animationFillMode: 'forwards' }}>
-          <h2 className="text-2xl font-bold text-white mb-8">¿Cómo funciona?</h2>
-          
-          {[
-            {
-              step: "1",
-              title: "Envía el IMEI",
-              description: "Toma una foto, envía una captura de pantalla o escribe /imei seguido del número"
-            },
-            {
-              step: "2",
-              title: "Procesamiento Inteligente",
-              description: "Nuestro sistema analiza la información usando Google Vision y nuestra API especializada"
-            },
-            {
-              step: "3",
-              title: "Resultados Instantáneos",
-              description: "Recibe todos los detalles relevantes del dispositivo en segundos"
-            }
-          ].map((step, index) => (
-            <div 
-              key={index} 
-              className="flex items-start mb-8 last:mb-0 opacity-0 animate-fadeIn hover:bg-white/10 rounded-xl transition-all duration-300 p-4"
-              style={{ 
-                animationDelay: `${1800 + (index * 200)}ms`,
-                animationFillMode: 'forwards'
-              }}
-            >
-              <div className="w-10 h-10 bg-white text-[#7B2BF9] rounded-xl flex items-center justify-center font-bold text-xl mr-4">
-                {step.step}
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-white/90">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center opacity-0 animate-slideUp"
-             style={{ animationDelay: '2200ms', animationFillMode: 'forwards' }}>
-          <p className="text-xl text-white mb-6">¡Versión beta disponible!</p>
-          <button className="bg-white text-[#7B2BF9] px-8 py-4 rounded-xl font-bold flex items-center gap-2 mx-auto hover:scale-105 hover:bg-white/90 transition-all duration-300">
-            Escribe "¡hola!" para comenzar
-            <ArrowRight className="inline animate-float" />
-          </button>
-        </div>
-
-        {/* Changelog Button - Fixed Position */}
-        <div 
-          className="fixed bottom-4 left-4 z-50"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsChangelogOpen(!isChangelogOpen);
-          }}
-        >
+        {/* Final CTA */}
+        <div className="text-center py-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Da el siguiente paso.</h2>
           <button
-            className="flex items-center gap-2 px-4 py-2 bg-white text-[#7B2BF9] rounded-xl font-medium hover:-translate-y-1 transition-all shadow-lg opacity-0 animate-fadeIn"
-            style={{ animationDelay: '2400ms', animationFillMode: 'forwards' }}
+            onClick={openAppStore}
+            className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-black hover:bg-gray-200 rounded-full font-bold text-xl transition-all transform hover:scale-105"
           >
-            <Clock size={20} />
-            Changelog
-            {isChangelogOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+            <Apple size={24} />
+            <span>Descargar Mo35 para iOS</span>
           </button>
-
-          <ChangelogModal 
-            isOpen={isChangelogOpen} 
-            onClose={() => setIsChangelogOpen(false)} 
-          />
         </div>
 
-        {/* Indicador flotante */}
-        <div className="fixed bottom-4 right-4 bg-white rounded-full p-4 animate-bounce shadow-lg">
-          <Smartphone className="w-6 h-6 text-[#7B2BF9]" />
-        </div>
+        {/* Footer */}
+        <footer className="border-t border-gray-800 pt-10 pb-6 text-center text-gray-500 text-sm">
+          <div className="flex justify-center gap-6 mb-4">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacidad</Link>
+            <Link href="#" className="hover:text-white transition-colors">Términos</Link>
+            <Link href="#" className="hover:text-white transition-colors">Soporte</Link>
+          </div>
+          <p>© {new Date().getFullYear()} Mo35. All rights reserved.</p>
+        </footer>
 
-        {/* Privacy Policy Link */}
-        <Link
-          href="/privacy"
-          onClick={(e) => e.stopPropagation()}
-          className="fixed bottom-4 right-20 flex items-center gap-2 px-4 py-2 bg-white/20 text-white rounded-xl text-sm hover:bg-white/30 transition-all opacity-0 animate-fadeIn"
-          style={{ animationDelay: '2400ms', animationFillMode: 'forwards' }}
-        >
-          <Shield size={16} />
-          Privacy Policy
-        </Link>
       </div>
     </div>
   );
+}
+
+// Helper Components
+
+function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+  return (
+    <div className="glass p-8 rounded-3xl hover:bg-white/5 transition-colors cursor-default border border-transparent hover:border-white/10 group">
+      <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit group-hover:bg-[#7B2BF9]/20 transition-colors">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
+      <p className="text-gray-400 leading-relaxed">{description}</p>
+    </div>
+  )
+}
+
+function ComparisonRow({ feature, bot, app }: { feature: string, bot: string, app: string }) {
+  return (
+    <div className="grid grid-cols-3 items-center py-3 border-b border-gray-800 last:border-0">
+      <div className="text-gray-400 font-medium text-sm md:text-base">{feature}</div>
+      <div className="text-center text-gray-500 text-sm md:text-base flex items-center justify-center gap-2">
+        <span className="hidden md:inline">{bot}</span>
+        {bot === 'No' || bot === 'Limitado' || bot === 'Lenta' || bot === 'No (Texto)' ? <X size={14} className="text-red-500/70" /> : null}
+      </div>
+      <div className="text-center text-[#7B2BF9] font-bold text-sm md:text-base flex items-center justify-center gap-2">
+        <span className="hidden md:inline">{app}</span>
+        <Check size={16} />
+      </div>
+    </div>
+  )
+}
+
+function ChevronDownIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+  )
+}
+
+function HistoryIcon({ size, className }: { size?: number, className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 12" /><path d="M3 3v9h9" /><path d="M12 7v5l4 2" /></svg>
+  )
 }
