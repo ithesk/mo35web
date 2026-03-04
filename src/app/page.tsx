@@ -164,9 +164,10 @@ export default function Mo35Landing() {
         {/* Footer */}
         <footer className="border-t border-gray-800 pt-10 pb-6 text-center text-gray-500 text-sm">
           <div className="flex justify-center gap-6 mb-4">
+            <Link href="/pricing" className="hover:text-white transition-colors">Precios</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacidad</Link>
-            <Link href="#" className="hover:text-white transition-colors">Términos</Link>
-            <Link href="#" className="hover:text-white transition-colors">Soporte</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Términos</Link>
+            <Link href="/refund" className="hover:text-white transition-colors">Reembolso</Link>
           </div>
           <p>© {new Date().getFullYear()} Mo35. All rights reserved.</p>
         </footer>

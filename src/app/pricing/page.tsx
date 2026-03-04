@@ -1,0 +1,226 @@
+'use client'
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowLeft, ArrowRight, Check, X, Zap, Crown, Star } from 'lucide-react';
+
+const t = {
+  en: {
+    back: 'Back to Home',
+    title: 'Plans & Pricing',
+    subtitle: 'Choose the plan that fits your needs',
+    free: 'Free',
+    premium: 'Premium',
+    month: '/mo',
+    popular: 'Most Popular',
+    features: {
+      queries: (n: number) => `${n} queries/month`,
+      fullInfo: 'Complete device info',
+      historyUnlimited: 'Unlimited history',
+      noHistory: 'No history',
+      favorites: 'Favorites',
+      noFavorites: 'No favorites',
+      extra: 'Extra queries: $0.35/each',
+      support: 'Priority support',
+    },
+    cta: {
+      free: 'Get Started Free',
+      premium: 'Upgrade to Premium',
+    },
+    faq: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Can I switch plans anytime?', a: 'Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle.' },
+      { q: 'What happens when I run out of queries?', a: 'On the Free plan, you\'ll need to wait until the next month. Premium users can purchase additional queries at $0.35 each.' },
+      { q: 'How does billing work?', a: 'Premium is billed monthly at $5/month. You can cancel anytime and your plan remains active until the end of the billing period.' },
+    ],
+    footer: '© {year} Mo35. All rights reserved.',
+    nav: { privacy: 'Privacy', terms: 'Terms', refund: 'Refund' },
+  },
+  es: {
+    back: 'Volver al inicio',
+    title: 'Planes y Precios',
+    subtitle: 'Elige el plan que se adapte a tus necesidades',
+    free: 'Gratis',
+    premium: 'Premium',
+    month: '/mes',
+    popular: 'Más Popular',
+    features: {
+      queries: (n: number) => `${n} consultas/mes`,
+      fullInfo: 'Información completa del dispositivo',
+      historyUnlimited: 'Historial ilimitado',
+      noHistory: 'Sin historial',
+      favorites: 'Favoritos',
+      noFavorites: 'Sin favoritos',
+      extra: 'Consultas extra: $0.35/cada una',
+      support: 'Soporte prioritario',
+    },
+    cta: {
+      free: 'Comenzar Gratis',
+      premium: 'Obtener Premium',
+    },
+    faq: 'Preguntas Frecuentes',
+    faqs: [
+      { q: '¿Puedo cambiar de plan en cualquier momento?', a: 'Sí, puedes actualizar o cambiar tu plan en cualquier momento. Los cambios se aplican en tu próximo ciclo de facturación.' },
+      { q: '¿Qué pasa cuando se agotan mis consultas?', a: 'En el plan Gratis, deberás esperar hasta el próximo mes. Los usuarios Premium pueden comprar consultas adicionales a $0.35 cada una.' },
+      { q: '¿Cómo funciona la facturación?', a: 'Premium se factura mensualmente a $5/mes. Puedes cancelar en cualquier momento y tu plan permanece activo hasta el final del período de facturación.' },
+    ],
+    footer: '© {year} Mo35. Todos los derechos reservados.',
+    nav: { privacy: 'Privacidad', terms: 'Términos', refund: 'Reembolso' },
+  },
+};
+
+export default function Pricing() {
+  const [lang, setLang] = useState<'en' | 'es'>('es');
+  const l = t[lang];
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-200 relative selection:bg-[#7B2BF9] selection:text-white">
+      {/* Background Decor */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#7B2BF9]/10 blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#7B2BF9]/5 blur-[120px]" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-12 relative z-10">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-12 animate-fadeIn">
+          <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group">
+            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            {l.back}
+          </Link>
+          <div className="flex glass rounded-xl overflow-hidden">
+            <button
+              onClick={() => setLang('es')}
+              className={`px-4 py-2 text-sm font-semibold transition-colors ${lang === 'es' ? 'bg-[#7B2BF9] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+            >
+              ES
+            </button>
+            <button
+              onClick={() => setLang('en')}
+              className={`px-4 py-2 text-sm font-semibold transition-colors ${lang === 'en' ? 'bg-[#7B2BF9] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+            >
+              EN
+            </button>
+          </div>
+        </div>
+
+        {/* Title */}
+        <div className="text-center mb-16 animate-fadeIn">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{l.title}</h1>
+          <p className="text-gray-400 text-lg">{l.subtitle}</p>
+        </div>
+
+        {/* Plans */}
+        <div className="grid md:grid-cols-2 gap-8 items-start mb-20">
+          {/* Free Plan */}
+          <div className="glass p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-white/5 rounded-xl text-[#7B2BF9]">
+                <Zap size={24} />
+              </div>
+              <h2 className="text-2xl font-bold text-white">{l.free}</h2>
+            </div>
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-white">$0</span>
+            </div>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-400">{l.features.queries(10)}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-400">{l.features.fullInfo}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <X size={18} className="text-gray-600 flex-shrink-0" />
+                <span className="text-gray-600">{l.features.noHistory}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <X size={18} className="text-gray-600 flex-shrink-0" />
+                <span className="text-gray-600">{l.features.noFavorites}</span>
+              </li>
+            </ul>
+            <button className="w-full px-6 py-4 glass hover:bg-white/10 text-white rounded-2xl font-bold transition-all border border-white/10">
+              {l.cta.free}
+            </button>
+          </div>
+
+          {/* Premium Plan */}
+          <div className="relative glass p-8 rounded-3xl border-2 border-[#7B2BF9]/50 hover:border-[#7B2BF9] transition-all shadow-lg shadow-[#7B2BF9]/10">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span className="px-4 py-1.5 bg-[#7B2BF9] text-white rounded-full text-sm font-bold flex items-center gap-1.5 shadow-lg shadow-[#7B2BF9]/30">
+                <Star size={14} />
+                {l.popular}
+              </span>
+            </div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-[#7B2BF9]/20 rounded-xl text-[#7B2BF9]">
+                <Crown size={24} />
+              </div>
+              <h2 className="text-2xl font-bold text-white">{l.premium}</h2>
+            </div>
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-white">$5</span>
+              <span className="text-gray-400 text-lg">{l.month}</span>
+            </div>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.queries(30)}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.fullInfo}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.historyUnlimited}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.favorites}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.extra}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Check size={18} className="text-green-400 flex-shrink-0" />
+                <span className="text-gray-300">{l.features.support}</span>
+              </li>
+            </ul>
+            <button className="w-full px-6 py-4 bg-[#7B2BF9] hover:bg-[#6222c7] text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#7B2BF9]/30">
+              {l.cta.premium}
+              <ArrowRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="glass rounded-3xl p-8 md:p-12 border border-white/5 mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-white">{l.faq}</h2>
+          <div className="space-y-2">
+            {l.faqs.map((faq, index) => (
+              <div key={index} className="p-5 rounded-2xl hover:bg-white/5 transition-colors">
+                <h3 className="text-lg font-semibold text-white mb-2">{faq.q}</h3>
+                <p className="text-gray-400 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800 pt-10 pb-6 text-center text-gray-500 text-sm relative z-10">
+        <div className="flex justify-center gap-6 mb-4">
+          <Link href="/privacy" className="hover:text-white transition-colors">{l.nav.privacy}</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">{l.nav.terms}</Link>
+          <Link href="/refund" className="hover:text-white transition-colors">{l.nav.refund}</Link>
+        </div>
+        <p>{l.footer.replace('{year}', new Date().getFullYear().toString())}</p>
+      </footer>
+    </div>
+  );
+}

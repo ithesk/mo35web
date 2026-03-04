@@ -230,7 +230,7 @@ export default function PrivacyPolicy() {
           </section>
         </div>
 
-        {/* Footer */}
+        {/* Back Button */}
         <div className="mt-16 text-center">
           <Link href="/" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-all transform hover:scale-105">
             <ArrowLeft size={20} />
@@ -238,6 +238,16 @@ export default function PrivacyPolicy() {
           </Link>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800 pt-10 pb-6 text-center text-gray-500 text-sm relative z-10">
+        <div className="flex justify-center gap-6 mb-4">
+          <Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+          <Link href="/refund" className="hover:text-white transition-colors">Refund</Link>
+        </div>
+        <p>© {new Date().getFullYear()} Mo35. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
