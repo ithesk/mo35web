@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, RotateCcw, Clock, AlertCircle, CheckCircle, Mail, HelpCircle } from 'lucide-react';
+import { ArrowLeft, RotateCcw, Clock, CheckCircle, Mail, HelpCircle } from 'lucide-react';
 
 const t = {
   en: {
@@ -14,46 +14,31 @@ const t = {
       {
         icon: 'info',
         title: '1. Overview',
-        content: 'This Refund Policy outlines the terms under which Mo35 ("we", "us", "our") processes refund requests for the Premium subscription plan. We strive to ensure customer satisfaction with our IMEI checking service.',
+        content: 'This Refund Policy outlines the terms under which Mo35 ("we", "us", "our") processes refund requests for the Premium subscription plan. Your satisfaction is our priority.',
       },
       {
         icon: 'check',
-        title: '2. Eligibility for Refunds',
-        content: null,
-        list: [
-          'You may request a full refund within 7 days of your initial Premium subscription purchase if you are not satisfied with the service.',
-          'Refunds are available only for the current billing period and cannot be applied retroactively.',
-          'If the service was unavailable or experienced significant technical issues affecting your ability to use it, you may be eligible for a partial or full refund.',
-        ],
+        title: '2. Refund Guarantee',
+        content: 'We offer a full refund within 14 days of any purchase — no questions asked. If you are not satisfied with our service for any reason, simply request a refund and it will be granted.',
       },
       {
         icon: 'clock',
-        title: '3. Refund Process',
+        title: '3. How to Request a Refund',
         content: null,
         list: [
-          'To request a refund, contact us at info@mo35.dev with your account email and reason for the request.',
-          'Refund requests are typically processed within 5-7 business days.',
-          'Approved refunds will be credited to your original payment method.',
-        ],
-      },
-      {
-        icon: 'alert',
-        title: '4. Non-Refundable Items',
-        content: null,
-        list: [
-          'Extra queries purchased beyond your plan limit ($0.35/each) are non-refundable once consumed.',
-          'Partial month usage after the 7-day refund window is not eligible for refund.',
-          'Refunds are not available if your account was suspended due to violation of our Terms of Service.',
+          'Contact us at info@mo35.dev with your account email.',
+          'Refund requests are processed within 5-7 business days.',
+          'Refunds will be credited to your original payment method.',
         ],
       },
       {
         icon: 'help',
-        title: '5. Cancellation',
-        content: 'You can cancel your Premium subscription at any time. Upon cancellation, your Premium features will remain active until the end of your current billing period. No refund will be issued for the remaining days of the billing period after the 7-day window.',
+        title: '4. Cancellation',
+        content: 'You can cancel your Premium subscription at any time. Upon cancellation, your Premium features will remain active until the end of your current billing period.',
       },
       {
         icon: 'mail',
-        title: '6. Contact Us',
+        title: '5. Contact Us',
         content: 'If you have questions about this Refund Policy or need to request a refund, please contact us:',
         contact: true,
       },
@@ -70,46 +55,31 @@ const t = {
       {
         icon: 'info',
         title: '1. Descripción General',
-        content: 'Esta Política de Reembolso describe los términos bajo los cuales Mo35 ("nosotros", "nuestro") procesa las solicitudes de reembolso para el plan de suscripción Premium. Nos esforzamos por garantizar la satisfacción del cliente con nuestro servicio de verificación IMEI.',
+        content: 'Esta Política de Reembolso describe los términos bajo los cuales Mo35 ("nosotros", "nuestro") procesa las solicitudes de reembolso para el plan de suscripción Premium. Tu satisfacción es nuestra prioridad.',
       },
       {
         icon: 'check',
-        title: '2. Elegibilidad para Reembolsos',
-        content: null,
-        list: [
-          'Puedes solicitar un reembolso completo dentro de los 7 días posteriores a tu compra inicial de la suscripción Premium si no estás satisfecho con el servicio.',
-          'Los reembolsos están disponibles solo para el período de facturación actual y no pueden aplicarse de forma retroactiva.',
-          'Si el servicio no estuvo disponible o experimentó problemas técnicos significativos que afectaron tu capacidad de uso, puedes ser elegible para un reembolso parcial o total.',
-        ],
+        title: '2. Garantía de Reembolso',
+        content: 'Ofrecemos un reembolso completo dentro de los 14 días posteriores a cualquier compra — sin preguntas. Si no estás satisfecho con nuestro servicio por cualquier motivo, simplemente solicita un reembolso y será otorgado.',
       },
       {
         icon: 'clock',
-        title: '3. Proceso de Reembolso',
+        title: '3. Cómo Solicitar un Reembolso',
         content: null,
         list: [
-          'Para solicitar un reembolso, contáctanos a info@mo35.dev con tu correo de cuenta y el motivo de la solicitud.',
-          'Las solicitudes de reembolso se procesan normalmente dentro de 5 a 7 días hábiles.',
-          'Los reembolsos aprobados se acreditarán a tu método de pago original.',
-        ],
-      },
-      {
-        icon: 'alert',
-        title: '4. Elementos No Reembolsables',
-        content: null,
-        list: [
-          'Las consultas extra compradas más allá de tu límite del plan ($0.35/cada una) no son reembolsables una vez consumidas.',
-          'El uso parcial del mes después de la ventana de reembolso de 7 días no es elegible para reembolso.',
-          'Los reembolsos no están disponibles si tu cuenta fue suspendida por violación de nuestros Términos de Servicio.',
+          'Contáctanos a info@mo35.dev con tu correo de cuenta.',
+          'Las solicitudes de reembolso se procesan dentro de 5 a 7 días hábiles.',
+          'Los reembolsos se acreditarán a tu método de pago original.',
         ],
       },
       {
         icon: 'help',
-        title: '5. Cancelación',
-        content: 'Puedes cancelar tu suscripción Premium en cualquier momento. Al cancelar, tus funciones Premium permanecerán activas hasta el final de tu período de facturación actual. No se emitirá reembolso por los días restantes del período de facturación después de la ventana de 7 días.',
+        title: '4. Cancelación',
+        content: 'Puedes cancelar tu suscripción Premium en cualquier momento. Al cancelar, tus funciones Premium permanecerán activas hasta el final de tu período de facturación actual.',
       },
       {
         icon: 'mail',
-        title: '6. Contáctanos',
+        title: '5. Contáctanos',
         content: 'Si tienes preguntas sobre esta Política de Reembolso o necesitas solicitar un reembolso, contáctanos:',
         contact: true,
       },
@@ -123,7 +93,7 @@ const icons: Record<string, React.ReactNode> = {
   info: <RotateCcw size={24} />,
   check: <CheckCircle size={24} />,
   clock: <Clock size={24} />,
-  alert: <AlertCircle size={24} />,
+
   help: <HelpCircle size={24} />,
   mail: <Mail size={24} />,
 };
