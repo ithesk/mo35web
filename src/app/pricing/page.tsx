@@ -191,7 +191,15 @@ export default function Pricing() {
                 <span className="text-gray-300">{l.features.support}</span>
               </li>
             </ul>
-            <button className="w-full px-6 py-4 bg-[#7B2BF9] hover:bg-[#6222c7] text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#7B2BF9]/30">
+            <button
+              onClick={() => {
+                window.Paddle?.Checkout.open({
+                  items: [{ priceId: 'pri_01kkej4gav4cd2jtvbvqkvc21q', quantity: 1 }],
+                  customData: { user_id: '', phone: '' },
+                })
+              }}
+              className="w-full px-6 py-4 bg-[#7B2BF9] hover:bg-[#6222c7] text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#7B2BF9]/30"
+            >
               {l.cta.premium}
               <ArrowRight size={20} />
             </button>

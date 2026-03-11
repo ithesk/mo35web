@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
+import { PaddleInit } from "@/components/PaddleInit";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -31,9 +33,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
+      <Script src="https://cdn.paddle.com/paddle/v2/paddle.js" strategy="beforeInteractive" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PaddleInit />
         {children}
       </body>
     </html>
