@@ -33,7 +33,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <Script src="https://cdn.paddle.com/paddle/v2/paddle.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.paddle.com/paddle/v2/paddle.js" strategy="afterInteractive" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

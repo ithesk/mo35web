@@ -18,10 +18,26 @@ declare global {
 
 export function PaddleInit() {
   useEffect(() => {
+    const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
+    if (!token) return
+
+    const init = () => {
+      if (window.Paddle) {
+        window.Paddle.Initialize({ token })
+      }
+    }
+
     if (window.Paddle) {
-      window.Paddle.Initialize({
-        token: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN!,
-      })
+      init()
+    } else {
+      // Esperar a que paddle.js cargue
+      const interval = setInterval(() => {
+        if (window.Paddle) {
+          init()
+          clearInterval(interval)
+        }
+      }, 100)
+      return () => clearInterval(interval)
     }
   }, [])
   return null
